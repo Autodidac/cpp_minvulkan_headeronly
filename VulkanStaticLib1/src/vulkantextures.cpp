@@ -1,4 +1,4 @@
-#include "../pch.h"
+//#include "../pch.h"
 #include "../include/vulkantextures.hpp"
 #include "../include/vulkanbuffers.hpp"
 #include "../include/vulkancommands.hpp"

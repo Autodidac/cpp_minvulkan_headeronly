@@ -1,0 +1,220 @@
+{
+  "$schema": "https://raw.githubusercontent.com/spdx/spdx-spec/v2.2.1/schemas/spdx-schema.json",
+  "spdxVersion": "SPDX-2.2",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "documentNamespace": "https://spdx.org/spdxdocs/mimalloc-x64-linux-2.1.7#1-6d0ff685-a0f0-4521-94f7-55db80faf032",
+  "name": "mimalloc:x64-linux@2.1.7#1 4e075324e00398c8efe6a1db1187ee1e753e3ef05d3d640f83f60e55f10c4699",
+  "creationInfo": {
+    "creators": [
+      "Tool: vcpkg-2025-01-29-a75ad067f470c19f030361064e32a2585392bee2"
+    ],
+    "created": "2025-02-06T16:38:47Z"
+  },
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "GENERATES",
+      "relatedSpdxElement": "SPDXRef-binary"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-0"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-1"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-2"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-3"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-4"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-5"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-6"
+    },
+    {
+      "spdxElementId": "SPDXRef-binary",
+      "relationshipType": "GENERATED_FROM",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-0",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-1",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-2",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-3",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-4",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-5",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-6",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    }
+  ],
+  "packages": [
+    {
+      "name": "mimalloc",
+      "SPDXID": "SPDXRef-port",
+      "versionInfo": "2.1.7#1",
+      "downloadLocation": "git+https://github.com/Microsoft/vcpkg@7c5bd4a682e8abd9ad95f184c32040d4fed94dfb",
+      "homepage": "https://github.com/microsoft/mimalloc",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "description": "Compact general purpose allocator with excellent performance",
+      "comment": "This is the port (recipe) consumed by vcpkg."
+    },
+    {
+      "name": "mimalloc:x64-linux",
+      "SPDXID": "SPDXRef-binary",
+      "versionInfo": "4e075324e00398c8efe6a1db1187ee1e753e3ef05d3d640f83f60e55f10c4699",
+      "downloadLocation": "NONE",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "This is a binary package built by vcpkg."
+    },
+    {
+      "SPDXID": "SPDXRef-resource-0",
+      "name": "microsoft/mimalloc",
+      "downloadLocation": "git+https://github.com/microsoft/mimalloc@v2.1.7",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "4e30976758015c76a146acc1bfc8501e2e5c61b81db77d253de0d58a8edef987669243f232210667b32ef8da3a33286642acb56ba526fd24c4ba925b44403730"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/mimalloc/7c5bd4a682e8abd9ad95f184c32040d4fed94dfb/portfile.cmake",
+      "SPDXID": "SPDXRef-file-0",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "db1494f58726fe2d673591320599038c2d3988a00bc35e4fe49026294468d15f"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/mimalloc/7c5bd4a682e8abd9ad95f184c32040d4fed94dfb/fix-param.patch",
+      "SPDXID": "SPDXRef-file-1",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "22ed8607a9d4cc4f8b9ccca3c44184f48df2f29c3c945444c043bc2614b6925b"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/mimalloc/7c5bd4a682e8abd9ad95f184c32040d4fed94dfb/fix-cmake.patch",
+      "SPDXID": "SPDXRef-file-2",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "778b3c50d1495f0fc5f0af1bb2e4fb183dc6b40e04fbef471b99f7a3b7887b28"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/mimalloc/7c5bd4a682e8abd9ad95f184c32040d4fed94dfb/vcpkg-cmake-wrapper.cmake",
+      "SPDXID": "SPDXRef-file-3",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "39db9d7b8cd3e89b99f666a2b77255f0279f775deccd224ae3cf4067877f5fb0"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/mimalloc/7c5bd4a682e8abd9ad95f184c32040d4fed94dfb/add_ref_to_page_malloc_zero.patch",
+      "SPDXID": "SPDXRef-file-4",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0cc4466eb70bf73f3a02ca68f57aadcc31e96e4ecccc0efc13501a9c2158bb86"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/mimalloc/7c5bd4a682e8abd9ad95f184c32040d4fed94dfb/usage",
+      "SPDXID": "SPDXRef-file-5",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fe455ea0bef30dcb6c8b7f852e77f5bdf3762a58d9bd8d826f6129de680d9388"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/mimalloc/7c5bd4a682e8abd9ad95f184c32040d4fed94dfb/vcpkg.json",
+      "SPDXID": "SPDXRef-file-6",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "57b0594da3e95b892d90fba0ec49a88eca08c38b53dba625be5b79ab86fff9bb"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    }
+  ]
+}

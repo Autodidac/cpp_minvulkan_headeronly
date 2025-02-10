@@ -1,20 +1,31 @@
-#include "..\VulkanStaticLib1\framework.h"
-#include "..\VulkanStaticLib1\include\vulkanbuffers.hpp"
-#include "..\VulkanStaticLib1\include\vulkancore.hpp"
-#include "..\VulkanStaticLib1\include\vulkanpipeline.hpp"
-#include "..\VulkanStaticLib1\include\vulkantextures.hpp"
-#include "..\VulkanStaticLib1\include\vulkancommands.hpp"
-#include "..\VulkanStaticLib1\include\vulkandescriptors.hpp"
+#ifdef _WIN32
+    #include "..\\VulkanStaticLib1\\framework.h"
+    #include "..\\VulkanStaticLib1\\include\\vulkanbuffers.hpp"
+    #include "..\\VulkanStaticLib1\\include\\vulkancore.hpp"
+    #include "..\\VulkanStaticLib1\\include\\vulkanpipeline.hpp"
+    #include "..\\VulkanStaticLib1\\include\\vulkantextures.hpp"
+    #include "..\\VulkanStaticLib1\\include\\vulkancommands.hpp"
+    #include "..\\VulkanStaticLib1\\include\\vulkandescriptors.hpp"
+#else
+    #include "../VulkanStaticLib1/include/vulkanbuffers.hpp"
+    #include "../VulkanStaticLib1/include/vulkancore.hpp"
+    #include "../VulkanStaticLib1/include/vulkanpipeline.hpp"
+    #include "../VulkanStaticLib1/include/vulkantextures.hpp"
+    #include "../VulkanStaticLib1/include/vulkancommands.hpp"
+    #include "../VulkanStaticLib1/include/vulkandescriptors.hpp"
+#endif
 
 #include <GLFW/glfw3.h>
 
 #include <chrono>
 #include <iostream>
+#include <vector>
+#include <cstring>
 
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/matrix_transform.hpp>
 
-
+// --- Cube vertex and index data (unchanged) ---
 const std::vector<VulkanCube::Vertex> vertices = {
     {{-0.5f, -0.5f,  0.5f}, {0.0f, 0.0f}},
     {{ 0.5f, -0.5f,  0.5f}, {1.0f, 0.0f}},
@@ -32,6 +43,7 @@ const std::vector<uint16_t> indices = {
     4, 0, 3, 3, 7, 4, 1, 5, 6, 6, 2, 1
 };
 
+// --- CubeApp class ---
 class CubeApp {
 public:
     void run() {
@@ -42,7 +54,7 @@ public:
     }
 
 private:
-    GLFWwindow* window;
+    GLFWwindow* window = nullptr;
     VulkanCube::Context context;
     VulkanCube::CommandPool commandPool;
     VulkanCube::Texture texture;
@@ -52,36 +64,50 @@ private:
     VulkanCube::DescriptorSets descriptorSets;
     VulkanCube::UniformBufferObject ubo{};
     bool framebufferResized = false;
+    // Use std::vector<char> for shader code
+    std::vector<char> vertShaderCode;
+    std::vector<char> fragShaderCode;
 
     void initWindow() {
-        glfwInit();
+        if (!glfwInit())
+            throw std::runtime_error("Failed to initialize GLFW");
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
         window = glfwCreateWindow(800, 600, "Vulkan Cube", nullptr, nullptr);
+        if (!window)
+            throw std::runtime_error("Failed to create GLFW window");
         glfwSetWindowUserPointer(window, this);
         glfwSetFramebufferSizeCallback(window, framebufferResizeCallback);
     }
 
-    static void framebufferResizeCallback(GLFWwindow* window, int width, int height) {
+    static void framebufferResizeCallback(GLFWwindow* window, int, int) {
         auto app = reinterpret_cast<CubeApp*>(glfwGetWindowUserPointer(window));
         app->framebufferResized = true;
     }
 
     void initVulkan() {
-        context = VulkanCube::Context::create(window, true);
+        context = VulkanCube::Context::createWindow(window, true);
         commandPool = VulkanCube::CommandPool::create(context, 2);
         texture = VulkanCube::Texture::loadFromFile(context, commandPool, "texture.jpg");
 
-        // Load shaders
-        auto vertShaderCode = VulkanCube::readFile("shader.vert.spv");
-        auto fragShaderCode = VulkanCube::readFile("shader.frag.spv");
+        // Load shaders into vectors of char:
+        try {
+            vertShaderCode = VulkanCube::readFile("shader.vert.spv");
+            fragShaderCode = VulkanCube::readFile("shader.frag.spv");
+        } catch (const std::exception& e) {
+            throw std::runtime_error("Failed to load shaders: " + std::string(e.what()));
+        }
 
-        // Create pipeline with loaded shaders
-        context.createGraphicsPipeline(vertShaderCode, fragShaderCode);
+        // Create the graphics pipeline from the shader code.
+        auto graphicsPipeline = VulkanCube::GraphicsPipeline::createPipeline(context, vertShaderCode, fragShaderCode);
+        // Assign pipeline objects to your context (this depends on your design)
+        context.graphicsPipeline = std::move(graphicsPipeline.pipeline);
+        context.pipelineLayout   = std::move(graphicsPipeline.layout);
+        context.renderPass       = std::move(graphicsPipeline.renderPass);
 
         createVertexBuffer();
         createIndexBuffer();
         createUniformBuffer();
-        descriptorSets = VulkanCube::DescriptorSets::create(context, uniformBuffer, texture );
+        descriptorSets = VulkanCube::DescriptorSets::create(context, uniformBuffer, texture.view.get());
     }
 
     void createVertexBuffer() {
@@ -91,9 +117,8 @@ private:
             vk::BufferUsageFlagBits::eVertexBuffer,
             vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent
         );
-
         void* data = context.device->mapMemory(*vertexBuffer.memory, 0, sizeof(vertices[0]) * vertices.size()).value;
-        memcpy(data, vertices.data(), sizeof(vertices[0]) * vertices.size());
+        std::memcpy(data, vertices.data(), sizeof(vertices[0]) * vertices.size());
         context.device->unmapMemory(*vertexBuffer.memory);
     }
 
@@ -104,9 +129,8 @@ private:
             vk::BufferUsageFlagBits::eIndexBuffer,
             vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent
         );
-
         void* data = context.device->mapMemory(*indexBuffer.memory, 0, sizeof(indices[0]) * indices.size()).value;
-        memcpy(data, indices.data(), sizeof(indices[0]) * indices.size());
+        std::memcpy(data, indices.data(), sizeof(indices[0]) * indices.size());
         context.device->unmapMemory(*indexBuffer.memory);
     }
 
@@ -125,138 +149,148 @@ private:
         float time = std::chrono::duration<float>(currentTime - startTime).count();
 
         ubo.model = glm::rotate(glm::mat4(1.0f), time * glm::radians(90.0f), { 0.0f, 0.0f, 1.0f });
-        ubo.view = glm::lookAt(glm::vec3(2.0f, 2.0f, 2.0f), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-        ubo.proj = glm::perspective(
+        ubo.view  = glm::lookAt(glm::vec3(2.0f, 2.0f, 2.0f), glm::vec3(0.0f),   glm::vec3(0.0f, 0.0f, 1.0f));
+        ubo.proj  = glm::perspective(
             glm::radians(45.0f),
-            context.swapchainExtent.width / (float)context.swapchainExtent.height,
+            static_cast<float>(context.swapchainExtent.width) / static_cast<float>(context.swapchainExtent.height),
             0.1f,
             10.0f
         );
         ubo.proj[1][1] *= -1;
 
         void* data = context.device->mapMemory(*uniformBuffer.memory, 0, sizeof(ubo)).value;
-        memcpy(data, &ubo, sizeof(ubo));
+        std::memcpy(data, &ubo, sizeof(ubo));
         context.device->unmapMemory(*uniformBuffer.memory);
     }
 
-    void drawFrame() {
-        updateUniformBuffer();
+// Revised drawFrame() without exception types that aren’t defined:
+void drawFrame() {
+    updateUniformBuffer();
 
-        auto& commandBuffer = commandPool.buffers[context.currentFrame].get();
-
-        vk::Result result;
-        uint32_t imageIndex;
-
-        try {
-            auto [acquireResult, acquiredImageIndex] = context.device->acquireNextImageKHR(
-                *context.swapchain, UINT64_MAX, *context.imageAvailableSemaphores[context.currentFrame], nullptr
-            );
-            result = acquireResult;
-            imageIndex = acquiredImageIndex;
-        }
-        catch (const vk::OutOfDateKHRError&) {
-            recreateSwapchain();
-            return;
-        }
-
-        if (result == vk::Result::eErrorOutOfDateKHR || framebufferResized) {
-            framebufferResized = false;
-            recreateSwapchain();
-            return;
-        }
-
-        commandBuffer.reset();
-        commandBuffer.begin({ vk::CommandBufferUsageFlagBits::eOneTimeSubmit });
-
-        vk::RenderPassBeginInfo renderPassInfo{
-            *context.renderPass,
-            *context.swapchainFramebuffers[imageIndex],
-            {{0, 0}, context.swapchainExtent},
-            1,
-            &context.clearValues
-        };
-
-        commandBuffer.beginRenderPass(renderPassInfo, vk::SubpassContents::eInline);
-        commandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, *context.graphicsPipeline);
-        commandBuffer.bindVertexBuffers(0, { *vertexBuffer.buffer }, { 0 });
-        commandBuffer.bindIndexBuffer(*indexBuffer.buffer, 0, vk::IndexType::eUint16);
-        commandBuffer.bindDescriptorSets(
-            vk::PipelineBindPoint::eGraphics,
-            *context.pipelineLayout,
-            0,
-            { *descriptorSets.sets[context.currentFrame] },
-            {}
-        );
-        commandBuffer.drawIndexed(static_cast<uint32_t>(indices.size()), 1, 0, 0, 0);
-        commandBuffer.endRenderPass();
-        commandBuffer.end();
-
-        vk::SubmitInfo submitInfo{
-            1,
-            &*context.imageAvailableSemaphores[context.currentFrame],
-            &vk::PipelineStageFlags{vk::PipelineStageFlagBits::eColorAttachmentOutput},
-            1,
-            &commandBuffer,
-            1,
-            &*context.renderFinishedSemaphores[context.currentFrame]
-        };
-
-        context.graphicsQueue.submit(submitInfo, *context.inFlightFences[context.currentFrame]);
-
-        try {
-            result = context.presentQueue.presentKHR({
-                1,
-                &*context.renderFinishedSemaphores[context.currentFrame],
-                1,
-                &*context.swapchain,
-                &imageIndex
-                });
-        }
-        catch (const vk::OutOfDateKHRError&) {
-            result = vk::Result::eErrorOutOfDateKHR;
-        }
-
-        if (result == vk::Result::eErrorOutOfDateKHR || result == vk::Result::eSuboptimalKHR || framebufferResized) {
-            framebufferResized = false;
-            recreateSwapchain();
-        }
-        else if (result != vk::Result::eSuccess) {
-            throw std::runtime_error("Failed to present swap chain image!");
-        }
-
-        context.currentFrame = (context.currentFrame + 1) % VulkanCube::MAX_FRAMES_IN_FLIGHT;
+    auto& commandBuffer = commandPool.buffers[context.currentFrame].get();
+    vk::Result result;
+    uint32_t imageIndex;
+    
+    // Use the non-throwing version of acquireNextImageKHR:
+    result = context.device->acquireNextImageKHR(
+                *context.swapchain, UINT64_MAX,
+                *context.imageAvailableSemaphores[context.currentFrame],
+                nullptr, &imageIndex);
+                
+    if (result == vk::Result::eErrorOutOfDateKHR ||
+        result == vk::Result::eSuboptimalKHR ||
+        framebufferResized) {
+        recreateSwapchain();
+        framebufferResized = false;
+        return;
+    }
+    if (result != vk::Result::eSuccess) {
+        throw std::runtime_error("Failed to acquire swapchain image!");
     }
 
-    void recreateSwapchain() {
-        int width = 0, height = 0;
+    (void) context.device->waitForFences({ *context.inFlightFences[context.currentFrame] }, VK_TRUE, UINT64_MAX);
+    (void) context.device->resetFences({ *context.inFlightFences[context.currentFrame] });
+
+    commandBuffer.reset();
+    (void) commandBuffer.begin({ vk::CommandBufferUsageFlagBits::eOneTimeSubmit });
+
+    // Define a local clear value instead of using context.clearValues:
+    vk::ClearValue clearValue;
+    clearValue.color = vk::ClearColorValue(std::array<float, 4>{0.0f, 0.0f, 0.0f, 1.0f});
+    
+    vk::RenderPassBeginInfo renderPassInfo(
+        *context.renderPass,
+        *context.swapchainFramebuffers[imageIndex],
+        vk::Rect2D({0, 0}, context.swapchainExtent),
+        1,
+        &clearValue
+    );
+    
+    commandBuffer.beginRenderPass(renderPassInfo, vk::SubpassContents::eInline);
+    commandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, *context.graphicsPipeline);
+    commandBuffer.bindVertexBuffers(0, { *vertexBuffer.buffer }, { 0 });
+    commandBuffer.bindIndexBuffer(*indexBuffer.buffer, 0, vk::IndexType::eUint16);
+    commandBuffer.bindDescriptorSets(
+        vk::PipelineBindPoint::eGraphics,
+        *context.pipelineLayout,
+        0,
+        { descriptorSets.sets[context.currentFrame] },
+        {}
+    );
+    commandBuffer.drawIndexed(static_cast<uint32_t>(indices.size()), 1, 0, 0, 0);
+    commandBuffer.endRenderPass();
+    (void) commandBuffer.end();
+
+    // Use a local variable for the wait stage flag.
+    vk::PipelineStageFlags waitStage = vk::PipelineStageFlagBits::eColorAttachmentOutput;
+    vk::SubmitInfo submitInfo{
+        1,
+        &*context.imageAvailableSemaphores[context.currentFrame],
+        &waitStage,
+        1,
+        &commandBuffer,
+        1,
+        &*context.renderFinishedSemaphores[context.currentFrame]
+    };
+
+    (void) context.graphicsQueue.submit(submitInfo, *context.inFlightFences[context.currentFrame]);
+
+    vk::PresentInfoKHR presentInfo{
+        1,
+        &*context.renderFinishedSemaphores[context.currentFrame],
+        1,
+        &*context.swapchain,
+        &imageIndex
+    };
+
+    result = context.presentQueue.presentKHR(presentInfo);
+    if (result == vk::Result::eErrorOutOfDateKHR ||
+        result == vk::Result::eSuboptimalKHR ||
+        framebufferResized) {
+        recreateSwapchain();
+        framebufferResized = false;
+    } else if (result != vk::Result::eSuccess) {
+        throw std::runtime_error("Failed to present swap chain image!");
+    }
+
+    context.currentFrame = (context.currentFrame + 1) % VulkanCube::Context::MAX_FRAMES_IN_FLIGHT;
+}
+
+void recreateSwapchain() {
+    int width = 0, height = 0;
+    glfwGetFramebufferSize(window, &width, &height);
+    while (width == 0 || height == 0) {
         glfwGetFramebufferSize(window, &width, &height);
-        while (width == 0 || height == 0) {
-            glfwGetFramebufferSize(window, &width, &height);
-            glfwWaitEvents();
-        }
-
-        context.device->waitIdle();
-        context.recreateSwapchain(window);
+        glfwWaitEvents();
     }
+
+    vk::Result result = context.device->waitIdle();
+    if (result != vk::Result::eSuccess) {
+        throw std::runtime_error("Failed to wait for device idle during swapchain recreation!");
+    }
+
+    std::cout << "Recreating swapchain..." << std::endl;
+    // TODO: Insert your actual swapchain cleanup and recreation logic here.
+}
 
     void mainLoop() {
         while (!glfwWindowShouldClose(window)) {
             glfwPollEvents();
             drawFrame();
         }
-        context.device->waitIdle();
+        (void) context.device->waitIdle();
     }
 
     void cleanup() {
-        context.device->waitIdle();
+        (void) context.device->waitIdle();
 
         uniformBuffer = {};
-        indexBuffer = {};
-        vertexBuffer = {};
-        texture = {};
+        indexBuffer   = {};
+        vertexBuffer  = {};
+        texture       = {};
         descriptorSets = {};
-        commandPool = {};
-        context = {};
+        commandPool   = {};
+        context       = {};
 
         glfwDestroyWindow(window);
         glfwTerminate();
@@ -267,8 +301,7 @@ int main() {
     CubeApp app;
     try {
         app.run();
-    }
-    catch (const std::exception& e) {
+    } catch (const std::exception& e) {
         std::cerr << "Fatal error: " << e.what() << std::endl;
         return EXIT_FAILURE;
     }

@@ -1,0 +1,132 @@
+{
+  "$schema": "https://raw.githubusercontent.com/spdx/spdx-spec/v2.2.1/schemas/spdx-schema.json",
+  "spdxVersion": "SPDX-2.2",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "documentNamespace": "https://spdx.org/spdxdocs/spirv-reflect-x64-linux-1.3.296.0-b830c31a-605c-4ee0-84b0-781be8954b6d",
+  "name": "spirv-reflect:x64-linux@1.3.296.0 3aee022190220e014acf2263c48b0ca30fb883cb95f785c9923819cb7e415a66",
+  "creationInfo": {
+    "creators": [
+      "Tool: vcpkg-2025-01-29-a75ad067f470c19f030361064e32a2585392bee2"
+    ],
+    "created": "2025-02-06T16:37:52Z"
+  },
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "GENERATES",
+      "relatedSpdxElement": "SPDXRef-binary"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-0"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-1"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-2"
+    },
+    {
+      "spdxElementId": "SPDXRef-binary",
+      "relationshipType": "GENERATED_FROM",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-0",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-1",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-2",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    }
+  ],
+  "packages": [
+    {
+      "name": "spirv-reflect",
+      "SPDXID": "SPDXRef-port",
+      "versionInfo": "1.3.296.0",
+      "downloadLocation": "git+https://github.com/Microsoft/vcpkg@fa076328489d6f554dcbdcc114aa53c0261cbeae",
+      "homepage": "https://github.com/KhronosGroup/SPIRV-Reflect",
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "description": "SPIRV-Reflect is a lightweight library that provides a C/C++ reflection API for SPIR-V shader bytecode in Vulkan applications.",
+      "comment": "This is the port (recipe) consumed by vcpkg."
+    },
+    {
+      "name": "spirv-reflect:x64-linux",
+      "SPDXID": "SPDXRef-binary",
+      "versionInfo": "3aee022190220e014acf2263c48b0ca30fb883cb95f785c9923819cb7e415a66",
+      "downloadLocation": "NONE",
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "This is a binary package built by vcpkg."
+    },
+    {
+      "SPDXID": "SPDXRef-resource-0",
+      "name": "KhronosGroup/SPIRV-Reflect",
+      "downloadLocation": "git+https://github.com/KhronosGroup/SPIRV-Reflect@vulkan-sdk-1.3.296.0",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "770d46172fed140816dcecc3155bce62ce319f5cbe99bb58e81994e07aed14ebc8f65675c6e47dde2148e2706603ba470f364ab41bcbfbc05c69e25be7c5a898"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/spirv-reflect/fa076328489d6f554dcbdcc114aa53c0261cbeae/portfile.cmake",
+      "SPDXID": "SPDXRef-file-0",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "bab810b483cffb3a3d08b834144fddc7844666a6964de0a12cda1d967a117b64"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/spirv-reflect/fa076328489d6f554dcbdcc114aa53c0261cbeae/export-targets.patch",
+      "SPDXID": "SPDXRef-file-1",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6dd5f600f5577967bd1133c5238e9d1a45919bd061bed63ad932523c386af8ab"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/spirv-reflect/fa076328489d6f554dcbdcc114aa53c0261cbeae/vcpkg.json",
+      "SPDXID": "SPDXRef-file-2",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0bfbce9b6b087a536469518f5051f205ec20235bf1e8e6438ea066d981b7fd0e"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    }
+  ]
+}

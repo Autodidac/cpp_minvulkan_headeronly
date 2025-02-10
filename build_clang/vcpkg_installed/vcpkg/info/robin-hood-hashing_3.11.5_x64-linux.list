@@ -1,0 +1,11 @@
+x64-linux/
+x64-linux/include/
+x64-linux/include/robin_hood.h
+x64-linux/share/
+x64-linux/share/robin-hood-hashing/
+x64-linux/share/robin-hood-hashing/copyright
+x64-linux/share/robin-hood-hashing/vcpkg.spdx.json
+x64-linux/share/robin-hood-hashing/vcpkg_abi_info.txt
+x64-linux/share/robin_hood/
+x64-linux/share/robin_hood/robin_hood-targets.cmake
+x64-linux/share/robin_hood/robin_hoodConfig.cmake

@@ -1,5 +1,5 @@
-#include "..\pch.h"
-#include "..\include\vulkancommands.hpp"
+//#include "..\pch.h"
+#include "../include/vulkancommands.hpp"
 
 #include <array>
 
@@ -33,40 +33,41 @@ namespace VulkanCube {
         vk::DescriptorSet descriptorSet,
         const std::vector<uint16_t>& indices,
         uint32_t currentFrame
-    ) const {
+    ) {
         auto& cmdBuffer = buffers[currentFrame];
 
-        cmdBuffer.reset();
+        cmdBuffer->reset();
         vk::CommandBufferBeginInfo beginInfo;
-        cmdBuffer.begin(beginInfo);
+        cmdBuffer->begin(beginInfo);
 
-        std::array<vk::ClearValue, 2> clearValues = { {
-            vk::ClearColorValue(std::array<float,4>{0.0f, 0.0f, 0.0f, 1.0f}),
+        std::array<vk::ClearValue, 2> clearValues = {{
+            vk::ClearColorValue(std::array<float, 4>{0.0f, 0.0f, 0.0f, 1.0f}),
             vk::ClearDepthStencilValue(1.0f, 0)
-        } };
+        }};
 
         vk::RenderPassBeginInfo renderPassInfo(
             *pipeline.renderPass,
             framebuffer,
             vk::Rect2D({ 0, 0 }, ctx.swapchainExtent),
-            clearValues.size(), clearValues.data()
+            static_cast<uint32_t>(clearValues.size()),
+            clearValues.data()
         );
 
-        cmdBuffer.beginRenderPass(renderPassInfo, vk::SubpassContents::eInline);
-        cmdBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, *pipeline.pipeline);
+        cmdBuffer->beginRenderPass(renderPassInfo, vk::SubpassContents::eInline);
+        cmdBuffer->bindPipeline(vk::PipelineBindPoint::eGraphics, *pipeline.pipeline);
 
-        cmdBuffer.bindVertexBuffers(0, { *vertexBuffer.buffer }, { 0 });
-        cmdBuffer.bindIndexBuffer(*indexBuffer.buffer, 0, vk::IndexType::eUint16);
+        cmdBuffer->bindVertexBuffers(0, { *vertexBuffer.buffer }, { 0 });
+        cmdBuffer->bindIndexBuffer(*indexBuffer.buffer, 0, vk::IndexType::eUint16);
 
-        cmdBuffer.bindDescriptorSets(
+        cmdBuffer->bindDescriptorSets(
             vk::PipelineBindPoint::eGraphics,
             *pipeline.layout,
             0, { descriptorSet }, {}
         );
 
-        cmdBuffer.drawIndexed(static_cast<uint32_t>(indices.size()), 1, 0, 0, 0);
-        cmdBuffer.endRenderPass();
-        cmdBuffer.end();
+        cmdBuffer->drawIndexed(static_cast<uint32_t>(indices.size()), 1, 0, 0, 0);
+        cmdBuffer->endRenderPass();
+        cmdBuffer->end();
     }
 
     vk::UniqueCommandBuffer beginSingleTimeCommands(const Context& ctx, const CommandPool& pool) {

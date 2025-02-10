@@ -1,0 +1,2 @@
+The package vulkan-validationlayers provides the vulkan validationlayers.
+To make vulkan use them you have to manually add the vcpkg path "<vcpkg_installed>/share/vulkan/explicit_layer.d" to the environment variable VK_ADD_LAYER_PATH.

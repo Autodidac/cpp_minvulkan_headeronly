@@ -1,0 +1,198 @@
+{
+  "$schema": "https://raw.githubusercontent.com/spdx/spdx-spec/v2.2.1/schemas/spdx-schema.json",
+  "spdxVersion": "SPDX-2.2",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "documentNamespace": "https://spdx.org/spdxdocs/dbus-x64-linux-1.15.8#5-fcb09e7a-dc93-42db-abf1-673665190233",
+  "name": "dbus:x64-linux@1.15.8#5 83eb2567b98bd6e3553a99fc47f3757a6282bf7449bb2d8e36907e9d390e9d0a",
+  "creationInfo": {
+    "creators": [
+      "Tool: vcpkg-2025-01-29-a75ad067f470c19f030361064e32a2585392bee2"
+    ],
+    "created": "2025-02-06T16:48:45Z"
+  },
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "GENERATES",
+      "relatedSpdxElement": "SPDXRef-binary"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-0"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-1"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-2"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-3"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-4"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-5"
+    },
+    {
+      "spdxElementId": "SPDXRef-binary",
+      "relationshipType": "GENERATED_FROM",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-0",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-1",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-2",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-3",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-4",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-5",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    }
+  ],
+  "packages": [
+    {
+      "name": "dbus",
+      "SPDXID": "SPDXRef-port",
+      "versionInfo": "1.15.8#5",
+      "downloadLocation": "git+https://github.com/Microsoft/vcpkg@ce28359a2d828a06b421d8a7b3841f83d98f0ed4",
+      "homepage": "https://gitlab.freedesktop.org/dbus/dbus",
+      "licenseConcluded": "AFL-2.1 OR GPL-2.0-or-later",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "description": "D-Bus specification and reference implementation, including libdbus and dbus-daemon",
+      "comment": "This is the port (recipe) consumed by vcpkg."
+    },
+    {
+      "name": "dbus:x64-linux",
+      "SPDXID": "SPDXRef-binary",
+      "versionInfo": "83eb2567b98bd6e3553a99fc47f3757a6282bf7449bb2d8e36907e9d390e9d0a",
+      "downloadLocation": "NONE",
+      "licenseConcluded": "AFL-2.1 OR GPL-2.0-or-later",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "This is a binary package built by vcpkg."
+    },
+    {
+      "SPDXID": "SPDXRef-resource-0",
+      "name": "dbus/dbus",
+      "downloadLocation": "git+https://gitlab.freedesktop.org//dbus/dbus@dbus-1.15.8",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "8e476b408514e6540c36beb84e8025827c22cda8958b6eb74d22b99c64765eb3cd5a6502aea546e3e5f0534039857b37edee89c659acef40e7cab0939947d4af"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/dbus/ce28359a2d828a06b421d8a7b3841f83d98f0ed4/portfile.cmake",
+      "SPDXID": "SPDXRef-file-0",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a2d84b7cb3548a423c0ff340ae0be3faf9818e3ab17fda12bb584594bcb3f496"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/dbus/ce28359a2d828a06b421d8a7b3841f83d98f0ed4/pkgconfig.patch",
+      "SPDXID": "SPDXRef-file-1",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c7c1d2f0d8cbf2556f7fce0044a5be2b3a1a2fa27531164050329a150578ccdb"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/dbus/ce28359a2d828a06b421d8a7b3841f83d98f0ed4/cmake.dep.patch",
+      "SPDXID": "SPDXRef-file-2",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "18448eefc562c6ca963ba34eb90c92faf2114b9dd2cbe2428556029928bb6833"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/dbus/ce28359a2d828a06b421d8a7b3841f83d98f0ed4/libsystemd.patch",
+      "SPDXID": "SPDXRef-file-3",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "94ef400da2b38f0b482ff06ffc3504ca861d0955ffed3cf2512b50ea51855c7b"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/dbus/ce28359a2d828a06b421d8a7b3841f83d98f0ed4/getpeereid.patch",
+      "SPDXID": "SPDXRef-file-4",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "64f0f6a04dc38011a0fbb29fe97f5ef229b47a229d3b5d34ebf293812cfbea24"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/dbus/ce28359a2d828a06b421d8a7b3841f83d98f0ed4/vcpkg.json",
+      "SPDXID": "SPDXRef-file-5",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2b947c205260725789d7336ffaeeebe6c9df3daaa50e92fc3bb390e2e2b7c45d"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    }
+  ]
+}

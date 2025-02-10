@@ -1,0 +1,109 @@
+{
+  "$schema": "https://raw.githubusercontent.com/spdx/spdx-spec/v2.2.1/schemas/spdx-schema.json",
+  "spdxVersion": "SPDX-2.2",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "documentNamespace": "https://spdx.org/spdxdocs/valijson-x64-linux-1.0.2-470e9137-8d28-430d-b70f-9867ce327384",
+  "name": "valijson:x64-linux@1.0.2 6d882731839256e884bb70fe356cc470dcf3bf5505621cbafbd06c550b104933",
+  "creationInfo": {
+    "creators": [
+      "Tool: vcpkg-2025-01-29-a75ad067f470c19f030361064e32a2585392bee2"
+    ],
+    "created": "2025-02-06T16:45:16Z"
+  },
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "GENERATES",
+      "relatedSpdxElement": "SPDXRef-binary"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-0"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-1"
+    },
+    {
+      "spdxElementId": "SPDXRef-binary",
+      "relationshipType": "GENERATED_FROM",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-0",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-1",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    }
+  ],
+  "packages": [
+    {
+      "name": "valijson",
+      "SPDXID": "SPDXRef-port",
+      "versionInfo": "1.0.2",
+      "downloadLocation": "git+https://github.com/Microsoft/vcpkg@5f6331f897b458f49d2d8e69f73bd47a47d0532d",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "description": "Header-only C++ library for JSON Schema validation",
+      "comment": "This is the port (recipe) consumed by vcpkg."
+    },
+    {
+      "name": "valijson:x64-linux",
+      "SPDXID": "SPDXRef-binary",
+      "versionInfo": "6d882731839256e884bb70fe356cc470dcf3bf5505621cbafbd06c550b104933",
+      "downloadLocation": "NONE",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "This is a binary package built by vcpkg."
+    },
+    {
+      "SPDXID": "SPDXRef-resource-0",
+      "name": "tristanpenman/valijson",
+      "downloadLocation": "git+https://github.com/tristanpenman/valijson@v1.0.2",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "c1141e533d6a791a01883c5b7ab9501eebc39057a850d784670a4bcf99bff3fee4c3120107128dcaa9db0505adf2ae794700620c02163b3e636f0b635031df80"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/valijson/5f6331f897b458f49d2d8e69f73bd47a47d0532d/portfile.cmake",
+      "SPDXID": "SPDXRef-file-0",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "cc40279d14a8ac98db0e6f465726a411187e3b707c370f8734d5e56ee7079a6a"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/valijson/5f6331f897b458f49d2d8e69f73bd47a47d0532d/vcpkg.json",
+      "SPDXID": "SPDXRef-file-1",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3db93aa9b08e768ebd77b079627ded16d6da7b3ecb3840f4d899bc661797e27b"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    }
+  ]
+}

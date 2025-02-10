@@ -1,0 +1,15 @@
+x64-linux/
+x64-linux/debug/
+x64-linux/debug/lib/
+x64-linux/debug/lib/libVkLayer_khronos_validation.so
+x64-linux/lib/
+x64-linux/lib/libVkLayer_khronos_validation.so
+x64-linux/share/
+x64-linux/share/vulkan-validationlayers/
+x64-linux/share/vulkan-validationlayers/copyright
+x64-linux/share/vulkan-validationlayers/usage
+x64-linux/share/vulkan-validationlayers/vcpkg.spdx.json
+x64-linux/share/vulkan-validationlayers/vcpkg_abi_info.txt
+x64-linux/share/vulkan/
+x64-linux/share/vulkan/explicit_layer.d/
+x64-linux/share/vulkan/explicit_layer.d/VkLayer_khronos_validation.json

@@ -1,0 +1,110 @@
+{
+  "$schema": "https://raw.githubusercontent.com/spdx/spdx-spec/v2.2.1/schemas/spdx-schema.json",
+  "spdxVersion": "SPDX-2.2",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "documentNamespace": "https://spdx.org/spdxdocs/spirv-cross-x64-linux-1.3.296.0-9328d829-c528-4079-b029-86a1bf1c865e",
+  "name": "spirv-cross:x64-linux@1.3.296.0 e5c9919a0327f34bbbd67aa3b562d11b9b342da7b8b4c19fcd60cce5047686fc",
+  "creationInfo": {
+    "creators": [
+      "Tool: vcpkg-2025-01-29-a75ad067f470c19f030361064e32a2585392bee2"
+    ],
+    "created": "2025-02-06T16:38:39Z"
+  },
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "GENERATES",
+      "relatedSpdxElement": "SPDXRef-binary"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-0"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-1"
+    },
+    {
+      "spdxElementId": "SPDXRef-binary",
+      "relationshipType": "GENERATED_FROM",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-0",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-1",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    }
+  ],
+  "packages": [
+    {
+      "name": "spirv-cross",
+      "SPDXID": "SPDXRef-port",
+      "versionInfo": "1.3.296.0",
+      "downloadLocation": "git+https://github.com/Microsoft/vcpkg@6d60b4e07708e480d90bbd89f95101d910feb181",
+      "homepage": "https://github.com/KhronosGroup/SPIRV-Cross",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "description": "SPIRV-Cross is a practical tool and library for performing reflection on SPIR-V and disassembling SPIR-V back to high level languages.",
+      "comment": "This is the port (recipe) consumed by vcpkg."
+    },
+    {
+      "name": "spirv-cross:x64-linux",
+      "SPDXID": "SPDXRef-binary",
+      "versionInfo": "e5c9919a0327f34bbbd67aa3b562d11b9b342da7b8b4c19fcd60cce5047686fc",
+      "downloadLocation": "NONE",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "This is a binary package built by vcpkg."
+    },
+    {
+      "SPDXID": "SPDXRef-resource-0",
+      "name": "KhronosGroup/SPIRV-Cross",
+      "downloadLocation": "git+https://github.com/KhronosGroup/SPIRV-Cross@vulkan-sdk-1.3.296.0",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "943453df60744fe32123df7e366b27d30d57947b22bf7c087090e70f398305b37a47826abc60cdf912f0240c4ff3190e9d0f03d1d4e85f73c13b8a6196611640"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/spirv-cross/6d60b4e07708e480d90bbd89f95101d910feb181/portfile.cmake",
+      "SPDXID": "SPDXRef-file-0",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f308e64ca5828d4312b89a1ac3bd2f2e15c8dcc2718e842977504dc9d0e5dede"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/spirv-cross/6d60b4e07708e480d90bbd89f95101d910feb181/vcpkg.json",
+      "SPDXID": "SPDXRef-file-1",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6d64dd746d5b4a5602d66e760e9c4c77254f68fdbf8ad7295fd1445cbe6c4383"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    }
+  ]
+}

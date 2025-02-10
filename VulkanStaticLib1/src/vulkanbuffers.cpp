@@ -1,15 +1,31 @@
-#include "..\pch.h"
-#include "..\include\vulkanbuffers.hpp"
+//#include "..\pch.h"
+#include "../include/vulkanbuffers.hpp"
 
 namespace VulkanCube {
    // using namespace vk;
+std::array<vk::VertexInputAttributeDescription, 3> VulkanCube::Vertex::getAttributeDescriptions() {
+    std::array<vk::VertexInputAttributeDescription, 3> attributeDescriptions{};
 
-    std::array<vk::VertexInputAttributeDescription, 2> Vertex::getAttributeDescriptions() {
-        return { {
-            {0, 0, vk::Format::eR32G32B32Sfloat, offsetof(Vertex, pos)},
-            {1, 0, vk::Format::eR32G32Sfloat, offsetof(Vertex, texCoord)}
-        } };
-    }
+    // Position
+    attributeDescriptions[0].binding = 0;
+    attributeDescriptions[0].location = 0;
+    attributeDescriptions[0].format = vk::Format::eR32G32B32Sfloat;
+    attributeDescriptions[0].offset = offsetof(Vertex, pos);
+
+    // Color
+    attributeDescriptions[1].binding = 0;
+    attributeDescriptions[1].location = 1;
+    attributeDescriptions[1].format = vk::Format::eR32G32B32Sfloat;
+    attributeDescriptions[1].offset = offsetof(Vertex, color);
+
+    // Texture Coordinates
+    attributeDescriptions[2].binding = 0;
+    attributeDescriptions[2].location = 2;
+    attributeDescriptions[2].format = vk::Format::eR32G32Sfloat;
+    attributeDescriptions[2].offset = offsetof(Vertex, texCoord);
+
+    return attributeDescriptions;
+}
 
     BufferPackage BufferPackage::create(const Context& ctx, vk::DeviceSize size,
         vk::BufferUsageFlags usage,

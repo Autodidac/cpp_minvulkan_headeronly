@@ -1,0 +1,132 @@
+{
+  "$schema": "https://raw.githubusercontent.com/spdx/spdx-spec/v2.2.1/schemas/spdx-schema.json",
+  "spdxVersion": "SPDX-2.2",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "documentNamespace": "https://spdx.org/spdxdocs/volk-x64-linux-1.3.296-32f3a55f-981a-4853-b5b4-56189da3a38c",
+  "name": "volk:x64-linux@1.3.296 e7eb581beffac1c17f1f819e7d17ee6baad0af42a355118d7d4458b260bf93b7",
+  "creationInfo": {
+    "creators": [
+      "Tool: vcpkg-2025-01-29-a75ad067f470c19f030361064e32a2585392bee2"
+    ],
+    "created": "2025-02-06T16:45:13Z"
+  },
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "GENERATES",
+      "relatedSpdxElement": "SPDXRef-binary"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-0"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-1"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-2"
+    },
+    {
+      "spdxElementId": "SPDXRef-binary",
+      "relationshipType": "GENERATED_FROM",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-0",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-1",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-2",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    }
+  ],
+  "packages": [
+    {
+      "name": "volk",
+      "SPDXID": "SPDXRef-port",
+      "versionInfo": "1.3.296",
+      "downloadLocation": "git+https://github.com/Microsoft/vcpkg@61510725dc5e5580f3c57a2939131e64519c3eef",
+      "homepage": "https://github.com/zeux/volk",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "description": "Meta loader for Vulkan API.\nNote that the static library target volk::volk is built without platform-specific defines.\nUse the header-only target volk::volk_headers if you require platform-specific extensions.",
+      "comment": "This is the port (recipe) consumed by vcpkg."
+    },
+    {
+      "name": "volk:x64-linux",
+      "SPDXID": "SPDXRef-binary",
+      "versionInfo": "e7eb581beffac1c17f1f819e7d17ee6baad0af42a355118d7d4458b260bf93b7",
+      "downloadLocation": "NONE",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "This is a binary package built by vcpkg."
+    },
+    {
+      "SPDXID": "SPDXRef-resource-0",
+      "name": "zeux/volk",
+      "downloadLocation": "git+https://github.com/zeux/volk@vulkan-sdk-1.3.296",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "bc57ab2d0408fba6d66c91eb477392e217ec5b4185db1191c9ed7750f3773c513674b0bb4f3378a0ee38038d0447aa868ca79842192c6060a6e8b33ca81552f0"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/volk/61510725dc5e5580f3c57a2939131e64519c3eef/portfile.cmake",
+      "SPDXID": "SPDXRef-file-0",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4358ea1078ba88475a2af05ee93e7582290f2a32fcfe3fbf0ae8b30931b5a869"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/volk/61510725dc5e5580f3c57a2939131e64519c3eef/usage",
+      "SPDXID": "SPDXRef-file-1",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1f3ba1f2eef0aa7e80c38a73f7f46faa4579d3d0e14878332fd6be74ced37587"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/volk/61510725dc5e5580f3c57a2939131e64519c3eef/vcpkg.json",
+      "SPDXID": "SPDXRef-file-2",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "32613afea7bb8d7f6d5f3585c05a26c4b5c767fad98d0a3a50fa04e3348d6b6d"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    }
+  ]
+}

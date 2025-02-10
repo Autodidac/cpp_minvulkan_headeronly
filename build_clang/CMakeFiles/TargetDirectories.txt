@@ -1,0 +1,13 @@
+/home/dude/Documents/repos/cpp_minvulkan_headeronly/build_clang/CMakeFiles/edit_cache.dir
+/home/dude/Documents/repos/cpp_minvulkan_headeronly/build_clang/CMakeFiles/rebuild_cache.dir
+/home/dude/Documents/repos/cpp_minvulkan_headeronly/build_clang/CMakeFiles/list_install_components.dir
+/home/dude/Documents/repos/cpp_minvulkan_headeronly/build_clang/CMakeFiles/install.dir
+/home/dude/Documents/repos/cpp_minvulkan_headeronly/build_clang/CMakeFiles/install/local.dir
+/home/dude/Documents/repos/cpp_minvulkan_headeronly/build_clang/CMakeFiles/install/strip.dir
+/home/dude/Documents/repos/cpp_minvulkan_headeronly/build_clang/vulkanapp1/CMakeFiles/vulkanapp1.dir
+/home/dude/Documents/repos/cpp_minvulkan_headeronly/build_clang/vulkanapp1/CMakeFiles/edit_cache.dir
+/home/dude/Documents/repos/cpp_minvulkan_headeronly/build_clang/vulkanapp1/CMakeFiles/rebuild_cache.dir
+/home/dude/Documents/repos/cpp_minvulkan_headeronly/build_clang/vulkanapp1/CMakeFiles/list_install_components.dir
+/home/dude/Documents/repos/cpp_minvulkan_headeronly/build_clang/vulkanapp1/CMakeFiles/install.dir
+/home/dude/Documents/repos/cpp_minvulkan_headeronly/build_clang/vulkanapp1/CMakeFiles/install/local.dir
+/home/dude/Documents/repos/cpp_minvulkan_headeronly/build_clang/vulkanapp1/CMakeFiles/install/strip.dir

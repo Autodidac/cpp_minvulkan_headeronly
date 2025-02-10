@@ -16,15 +16,16 @@ namespace VulkanCube {
 
         static CommandPool create(const Context& ctx, uint32_t bufferCount);
 
-        void record(
+        void recordFrame(
             const Context& ctx,
             const GraphicsPipeline& pipeline,
             const BufferPackage& vertexBuffer,
             const BufferPackage& indexBuffer,
-            const std::vector<vk::UniqueFramebuffer>& framebuffers,
-            const std::vector<vk::UniqueDescriptorSet>& descriptorSets,
-            const std::vector<uint16_t>& indices
-        ) const;
+            vk::Framebuffer framebuffer,
+            vk::DescriptorSet descriptorSet,
+            const std::vector<uint16_t>& indices,
+            uint32_t currentFrame
+        );
     };
 
     vk::UniqueCommandBuffer beginSingleTimeCommands(const Context& ctx, const CommandPool& pool);

@@ -1,0 +1,132 @@
+{
+  "$schema": "https://raw.githubusercontent.com/spdx/spdx-spec/v2.2.1/schemas/spdx-schema.json",
+  "spdxVersion": "SPDX-2.2",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "documentNamespace": "https://spdx.org/spdxdocs/glslang-x64-linux-15.0.0-bc8fd51a-062e-4c50-a061-c9d8778e04ec",
+  "name": "glslang:x64-linux@15.0.0 3710b857c0fb50b2aac8b306da40152b8eac0985c5ab208dcaf0168d6b24b47e",
+  "creationInfo": {
+    "creators": [
+      "Tool: vcpkg-2025-01-29-a75ad067f470c19f030361064e32a2585392bee2"
+    ],
+    "created": "2025-02-06T16:46:10Z"
+  },
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "GENERATES",
+      "relatedSpdxElement": "SPDXRef-binary"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-0"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-1"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-2"
+    },
+    {
+      "spdxElementId": "SPDXRef-binary",
+      "relationshipType": "GENERATED_FROM",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-0",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-1",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-2",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    }
+  ],
+  "packages": [
+    {
+      "name": "glslang",
+      "SPDXID": "SPDXRef-port",
+      "versionInfo": "15.0.0",
+      "downloadLocation": "git+https://github.com/Microsoft/vcpkg@238083db89713c6762c7f785176b28183154deed",
+      "homepage": "https://github.com/KhronosGroup/glslang",
+      "licenseConcluded": "Apache-2.0 AND BSD-3-Clause AND MIT AND GPL-3.0-or-later",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "description": "Khronos-reference front end for GLSL/ESSL, partial front end for HLSL, and a SPIR-V generator.",
+      "comment": "This is the port (recipe) consumed by vcpkg."
+    },
+    {
+      "name": "glslang:x64-linux",
+      "SPDXID": "SPDXRef-binary",
+      "versionInfo": "3710b857c0fb50b2aac8b306da40152b8eac0985c5ab208dcaf0168d6b24b47e",
+      "downloadLocation": "NONE",
+      "licenseConcluded": "Apache-2.0 AND BSD-3-Clause AND MIT AND GPL-3.0-or-later",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "This is a binary package built by vcpkg."
+    },
+    {
+      "SPDXID": "SPDXRef-resource-0",
+      "name": "KhronosGroup/glslang",
+      "downloadLocation": "git+https://github.com/KhronosGroup/glslang@15.0.0",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "b246c6f280891b7c9b6cd0b5e85e03ccf1fe173cdfc40e566339a5698176cbcfe23eb7aeaba277f071222d76b9f2a00376d790d4d604aedad82e6196fab7fc70"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/glslang/238083db89713c6762c7f785176b28183154deed/portfile.cmake",
+      "SPDXID": "SPDXRef-file-0",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9b75276f5b39a6d173e61a5e22ff6f6fc1aa796bd076612600954af34d6aae31"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/glslang/238083db89713c6762c7f785176b28183154deed/usage",
+      "SPDXID": "SPDXRef-file-1",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4540add6b05793ff9a10c575fb09be7b251c79e5b0aa7431529887d5d2261320"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/glslang/238083db89713c6762c7f785176b28183154deed/vcpkg.json",
+      "SPDXID": "SPDXRef-file-2",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0828dc664b1f6d9e21a8342bf77f11cba59380ddd5501c13481c9e620d8c4342"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    }
+  ]
+}

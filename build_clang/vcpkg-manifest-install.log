@@ -1,0 +1,179 @@
+Detecting compiler hash for triplet x64-linux...
+Compiler found: /usr/bin/c++
+The following packages will be built and installed:
+  * dbus[core,systemd]:x64-linux@1.15.8#5 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/dbus/ce28359a2d828a06b421d8a7b3841f83d98f0ed4
+  * expat:x64-linux@2.6.3 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/expat/9649f61e2f302f608dfb98d6f366e0a08e413487
+    glfw3:x64-linux@3.4#1 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/glfw3/d4bbd4f27c2ca619f57778985120cddcedadb1cc
+    glm:x64-linux@1.0.1#3 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/glm/f8b09027afe97c717e95bd81d1d4f37c057d1c78
+  * glslang:x64-linux@15.0.0 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/glslang/238083db89713c6762c7f785176b28183154deed
+  * gperf:x64-linux@3.1#6 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/gperf/590e19515bff5b0abc6d9f73ba20a19a71555a32
+  * jsoncpp:x64-linux@1.9.6 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/jsoncpp/dde49ad9d554fd5f062c0c1deea6e54b6fdb35b2
+  * libcap:x64-linux@2.71 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/libcap/624965e04fa91928fc26f8a061527d30ed58bf98
+  * liblzma:x64-linux@5.6.3 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/liblzma/b5e5694620b41a4d668390e5d14fa2326e0afdc3
+  * libmount:x64-linux@2.40 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/libmount/e78ea57cae347c42d9b7cdc4d65c521f229e0ed4
+  * libsystemd:x64-linux@256.4 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/libsystemd/03b20e5c1a908db5d38dd3fad3fa074c10e6b04b
+  * libxcrypt:x64-linux@4.4.36#1 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/libxcrypt/89d7de97e87cb0eb10479d47ec43e1cc732b2734
+  * lz4:x64-linux@1.10.0 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/lz4/4f01eec10f515a428e914107c5188366380f8dd9
+  * mimalloc:x64-linux@2.1.7#1 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/mimalloc/7c5bd4a682e8abd9ad95f184c32040d4fed94dfb
+  * robin-hood-hashing:x64-linux@3.11.5 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/robin-hood-hashing/79b90adbe2f012facdd920fdb6454bc21c84399e
+  * sdl2[core,dbus,ibus,wayland,x11]:x64-linux@2.30.9 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/sdl2/2cf4933ce414154c0c5adc2b11b0749f35e3c785
+  * shaderc:x64-linux@2023.8 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/shaderc/2e5657c38583dba408c16a4d1cc7f624d01d7d3b
+  * spirv-cross:x64-linux@1.3.296.0 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/spirv-cross/6d60b4e07708e480d90bbd89f95101d910feb181
+  * spirv-headers:x64-linux@1.3.296.0 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/spirv-headers/f1e872bb8327f8ab7b0cc5640673236419b497d0
+  * spirv-reflect:x64-linux@1.3.296.0 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/spirv-reflect/fa076328489d6f554dcbdcc114aa53c0261cbeae
+  * spirv-tools:x64-linux@1.3.296.0 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/spirv-tools/d7623e3b9a2791fc6adde89c36602e5d314e1dd8
+  * valijson:x64-linux@1.0.2 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/valijson/5f6331f897b458f49d2d8e69f73bd47a47d0532d
+  * vcpkg-cmake:x64-linux@2024-04-23 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/vcpkg-cmake/e74aa1e8f93278a8e71372f1fa08c3df420eb840
+  * vcpkg-cmake-config:x64-linux@2024-05-23 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/vcpkg-cmake-config/97a63e4bc1a17422ffe4eff71da53b4b561a7841
+  * vcpkg-cmake-get-vars:x64-linux@2024-09-22 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/vcpkg-cmake-get-vars/f23148add155147f3d95ae622d3b0031beb25acf
+  * vcpkg-tool-meson:x64-linux@1.6.0 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/vcpkg-tool-meson/ba86563d438bbe6692c2b13df4235755ba135cbc
+  * volk:x64-linux@1.3.296 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/volk/61510725dc5e5580f3c57a2939131e64519c3eef
+  * vulkan:x64-linux@2023-12-17 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/vulkan/3e8d64ec799440b97c7151f97dd00a53e8e1b5ea
+  * vulkan-headers:x64-linux@1.3.296.0 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/vulkan-headers/4dd5a13664c79d5df78837e35061568ad41c07a8
+  * vulkan-loader:x64-linux@1.3.296.0 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/vulkan-loader/f96603152b3334e095d5e365effab5588f875000
+  * vulkan-memory-allocator:x64-linux@3.1.0 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/vulkan-memory-allocator/267d8f5eb222e5ea111f11f57ebc8458c6df65e7
+    vulkan-sdk-components:x64-linux@1.3.296.0 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/vulkan-sdk-components/7a0f9cbc644e8d49e5cabb85ad57d201787447c5
+  * vulkan-utility-libraries:x64-linux@1.3.296.0 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/vulkan-utility-libraries/513317b99a7f1cebfd357c948f330f59ab2ff966
+  * vulkan-validationlayers:x64-linux@1.3.296.0 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/vulkan-validationlayers/93913bad76f726fbd8cd239ce8227db3245b2de7
+  * zstd:x64-linux@1.5.6 -- /home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/zstd/796171d4d359b6786b8e1380fb6da8e677a9087b
+Additional packages (*) will be modified to complete this operation.
+Restored 35 package(s) from /home/dude/.cache/vcpkg/archives in 5.9 s. Use --debug to see more details.
+Installing 1/35 vcpkg-cmake-config:x64-linux@2024-05-23...
+Elapsed time to handle vcpkg-cmake-config:x64-linux: 4.46 ms
+vcpkg-cmake-config:x64-linux package ABI: e16c4c2bb572a5d2af246e4646b3b0e4c18686f3b17606da7bffcead7bd941fc
+Installing 2/35 vcpkg-cmake:x64-linux@2024-04-23...
+Elapsed time to handle vcpkg-cmake:x64-linux: 5.79 ms
+vcpkg-cmake:x64-linux package ABI: 24b2e0b87c05535f12eb386be9820a392930ae3c92676473381face9cdb506b0
+Installing 3/35 glfw3:x64-linux@3.4#1...
+Elapsed time to handle glfw3:x64-linux: 11 ms
+glfw3:x64-linux package ABI: 1f25bd81d6e3c3287033922ef10063e25c82022605b163c76b96db48e28a094e
+Installing 4/35 glm:x64-linux@1.0.1#3...
+Elapsed time to handle glm:x64-linux: 9.41 ms
+glm:x64-linux package ABI: 9ec5619d5e39b56c0dea7c29ab0782e1e4ec0178111d559f630d60ee7f3b3884
+Installing 5/35 vulkan-headers:x64-linux@1.3.296.0...
+Elapsed time to handle vulkan-headers:x64-linux: 3.97 ms
+vulkan-headers:x64-linux package ABI: e8f99d2b5029fdc5ec8cca2c4fa4b79b9e99243867b39c61c34ee72d74412d29
+Installing 6/35 vulkan-utility-libraries:x64-linux@1.3.296.0...
+Elapsed time to handle vulkan-utility-libraries:x64-linux: 3.59 ms
+vulkan-utility-libraries:x64-linux package ABI: 7f59714d74fb227d33a935e8f6d50a1bd3a9d825cf47f4e859150721bcf7c649
+Installing 7/35 spirv-headers:x64-linux@1.3.296.0...
+Elapsed time to handle spirv-headers:x64-linux: 3.34 ms
+spirv-headers:x64-linux package ABI: 6b047585158c06b4601c7035a098b4e4b78ac218abff17dcc30fd504da6ff7b4
+Installing 8/35 spirv-tools:x64-linux@1.3.296.0...
+Elapsed time to handle spirv-tools:x64-linux: 3.68 ms
+spirv-tools:x64-linux package ABI: de378a20a2b5784621d08fd55499376a4bf5b6f38c3ab3b6d1b8adf521bd8d1f
+Installing 9/35 spirv-reflect:x64-linux@1.3.296.0...
+Elapsed time to handle spirv-reflect:x64-linux: 3.71 ms
+spirv-reflect:x64-linux package ABI: 3aee022190220e014acf2263c48b0ca30fb883cb95f785c9923819cb7e415a66
+Installing 10/35 spirv-cross:x64-linux@1.3.296.0...
+Elapsed time to handle spirv-cross:x64-linux: 5.4 ms
+spirv-cross:x64-linux package ABI: e5c9919a0327f34bbbd67aa3b562d11b9b342da7b8b4c19fcd60cce5047686fc
+Installing 11/35 robin-hood-hashing:x64-linux@3.11.5...
+Elapsed time to handle robin-hood-hashing:x64-linux: 2.51 ms
+robin-hood-hashing:x64-linux package ABI: 121071c7b85bd04549879ccf36e1723e11d5c710b91c1729aca68923edcf5154
+Installing 12/35 mimalloc:x64-linux@2.1.7#1...
+Elapsed time to handle mimalloc:x64-linux: 4.36 ms
+mimalloc:x64-linux package ABI: 4e075324e00398c8efe6a1db1187ee1e753e3ef05d3d640f83f60e55f10c4699
+Installing 13/35 vulkan-validationlayers:x64-linux@1.3.296.0...
+Elapsed time to handle vulkan-validationlayers:x64-linux: 4.3 ms
+vulkan-validationlayers:x64-linux package ABI: c4afd0034153a91e1b0ff254d6b20a2ba9ac5fed2dfa191c15928839af90040f
+Installing 14/35 vulkan-memory-allocator:x64-linux@3.1.0...
+Elapsed time to handle vulkan-memory-allocator:x64-linux: 5.41 ms
+vulkan-memory-allocator:x64-linux package ABI: 3b5704579bb5d990703d9f08c89463afe04f5c203258cb5274f3082ff433a771
+Installing 15/35 vulkan-loader:x64-linux@1.3.296.0...
+Elapsed time to handle vulkan-loader:x64-linux: 2.86 ms
+vulkan-loader:x64-linux package ABI: 04563164041c12c1e7f808cfb8569b83d4033541dd2126b1218b36055415635b
+Installing 16/35 vulkan:x64-linux@2023-12-17...
+Elapsed time to handle vulkan:x64-linux: 5.83 ms
+vulkan:x64-linux package ABI: 5ac963caf523191f8f87f2702ab9e0df312b00f2d687165991a33b4efb331fae
+Installing 17/35 volk:x64-linux@1.3.296...
+Elapsed time to handle volk:x64-linux: 6.54 ms
+volk:x64-linux package ABI: e7eb581beffac1c17f1f819e7d17ee6baad0af42a355118d7d4458b260bf93b7
+Installing 18/35 valijson:x64-linux@1.0.2...
+Elapsed time to handle valijson:x64-linux: 6.75 ms
+valijson:x64-linux package ABI: 6d882731839256e884bb70fe356cc470dcf3bf5505621cbafbd06c550b104933
+Installing 19/35 glslang:x64-linux@15.0.0...
+Elapsed time to handle glslang:x64-linux: 5.82 ms
+glslang:x64-linux package ABI: 3710b857c0fb50b2aac8b306da40152b8eac0985c5ab208dcaf0168d6b24b47e
+Installing 20/35 shaderc:x64-linux@2023.8...
+Elapsed time to handle shaderc:x64-linux: 6.13 ms
+shaderc:x64-linux package ABI: 20917e592c9fe87c6270690014e65924094f347696ecdc6ced5beebf37408c24
+Installing 21/35 zstd:x64-linux@1.5.6...
+Elapsed time to handle zstd:x64-linux: 3.82 ms
+zstd:x64-linux package ABI: 68a4a8b356972188d1b7977b4cc548919fd6fde4600872de0b1150874f0070ba
+Installing 22/35 vcpkg-cmake-get-vars:x64-linux@2024-09-22...
+Elapsed time to handle vcpkg-cmake-get-vars:x64-linux: 3.26 ms
+vcpkg-cmake-get-vars:x64-linux package ABI: e5914a676ccc59a9f54bbecfaf311fe3c2c059c27308dd3744621e984b863378
+Installing 23/35 vcpkg-tool-meson:x64-linux@1.6.0...
+Elapsed time to handle vcpkg-tool-meson:x64-linux: 4.49 ms
+vcpkg-tool-meson:x64-linux package ABI: de36969b43d5ed0e6e847f88c198c3f236ab73ecd95992622bb23603d7b55527
+Installing 24/35 lz4:x64-linux@1.10.0...
+Elapsed time to handle lz4:x64-linux: 6.51 ms
+lz4:x64-linux package ABI: 83976d6788e24e174c81f1157d245e929eda191c2adc7083fa6ed9dd032f9789
+Installing 25/35 libxcrypt:x64-linux@4.4.36#1...
+Elapsed time to handle libxcrypt:x64-linux: 1.35 ms
+libxcrypt:x64-linux package ABI: 4f04346ce8185592c0333c4ba48cd0fa3289b3cf03206ae4b65fbad92e787316
+Installing 26/35 libmount:x64-linux@2.40...
+Elapsed time to handle libmount:x64-linux: 1.22 ms
+libmount:x64-linux package ABI: d6b9456af29c9c3f3887ce785319e8ba6b5cd3b997ce7949f71416249e171000
+Installing 27/35 liblzma:x64-linux@5.6.3...
+Elapsed time to handle liblzma:x64-linux: 1.73 ms
+liblzma:x64-linux package ABI: 033ba8b8fcfd90f0ddf5b0b8079dbf2dbd38704cf535e3d301ac814deca86836
+Installing 28/35 libcap:x64-linux@2.71...
+Elapsed time to handle libcap:x64-linux: 1.4 ms
+libcap:x64-linux package ABI: 3563537985442c1f546cdeda09a6c075b742e00b87d2d222df830f30b1136875
+Installing 29/35 gperf:x64-linux@3.1#6...
+Elapsed time to handle gperf:x64-linux: 1.04 ms
+gperf:x64-linux package ABI: 10a4d996aa4c2b65d48951ee314c47379183e1a8884dd7976fab30df626dd2b1
+Installing 30/35 libsystemd:x64-linux@256.4...
+Elapsed time to handle libsystemd:x64-linux: 1.36 ms
+libsystemd:x64-linux package ABI: d7d790595db5b063ab91d4404b06a76f1b948c4ca1c8a975a1e1e894a55d6d3f
+Installing 31/35 expat:x64-linux@2.6.3...
+Elapsed time to handle expat:x64-linux: 1.26 ms
+expat:x64-linux package ABI: 563c25f3a4ed15a448e8ed053566dbf14f8c2c9cffdf570eaeefe8511cf00459
+Installing 32/35 dbus[core,systemd]:x64-linux@1.15.8#5...
+Elapsed time to handle dbus:x64-linux: 2.93 ms
+dbus:x64-linux package ABI: 83eb2567b98bd6e3553a99fc47f3757a6282bf7449bb2d8e36907e9d390e9d0a
+Installing 33/35 sdl2[core,dbus,ibus,wayland,x11]:x64-linux@2.30.9...
+Elapsed time to handle sdl2:x64-linux: 2.94 ms
+sdl2:x64-linux package ABI: 452d99f1ab7d5a84e954253cd0e6657126d9d2769c07cc3de7ecb7a9652d92a5
+Installing 34/35 jsoncpp:x64-linux@1.9.6...
+Elapsed time to handle jsoncpp:x64-linux: 1.51 ms
+jsoncpp:x64-linux package ABI: b03c870bf163cec156006d87323b8d65489305a4d96a315a4a2c75aa48c4ddb5
+Installing 35/35 vulkan-sdk-components:x64-linux@1.3.296.0...
+Elapsed time to handle vulkan-sdk-components:x64-linux: 1.11 ms
+vulkan-sdk-components:x64-linux package ABI: 601d7f5941850821a936c1d6b00147b55c21097d72053d52a61c2230c27d4715
+Total install time: 143 ms
+glfw3 provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(glfw3 CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE glfw)
+
+glfw3 provides pkg-config modules:
+
+  # A multi-platform library for OpenGL, window and input
+  glfw3
+
+The package glm provides CMake targets:
+
+    find_package(glm CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE glm::glm)
+
+    # Or use the header-only version
+    find_package(glm CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE glm::glm-header-only)
+
+vulkan-sdk-components is compatible with built-in CMake targets:
+
+    # https://cmake.org/cmake/help/latest/module/FindVulkan.html
+    find_package(Vulkan REQUIRED)
+    # SPIR-V generator library
+    target_link_libraries(main PRIVATE Vulkan::glslang)
+    # DirectX Shader Compiler
+    target_link_libraries(main PRIVATE Vulkan::dxc)
+
+The vulkan-sdk-components package does not provide direct Visual Studio
+integration. For manual integration, add $(VULKAN_SDK)/include to your
+include path.
+

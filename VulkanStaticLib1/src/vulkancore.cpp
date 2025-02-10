@@ -1,8 +1,10 @@
-#include "..\pch.h"
-#include "..\include\vulkancore.hpp"
+//#include "..\pch.h"
+#include "../include/vulkancore.hpp"
 
 #include <set>
 #include <stdexcept>
+#include <limits>
+#include <algorithm>
 
 namespace VulkanCube {
     //using namespace vk;
@@ -23,7 +25,8 @@ namespace VulkanCube {
         details.presentModes = physicalDevice.getSurfacePresentModesKHR(*surface).value;
         return details;
     }
-    // Add these helper functions inside the VulkanCube namespace
+
+    // Helper functions
     vk::SurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<vk::SurfaceFormatKHR>& formats) {
         for (const auto& format : formats) {
             if (format.format == vk::Format::eB8G8R8A8Srgb &&
@@ -51,15 +54,15 @@ namespace VulkanCube {
 
         return vk::Extent2D{
             std::clamp(static_cast<uint32_t>(width),
-                     capabilities.minImageExtent.width,
-                     capabilities.maxImageExtent.width),
+                       capabilities.minImageExtent.width,
+                       capabilities.maxImageExtent.width),
             std::clamp(static_cast<uint32_t>(height),
-                     capabilities.minImageExtent.height,
-                     capabilities.maxImageExtent.height)
+                       capabilities.minImageExtent.height,
+                       capabilities.maxImageExtent.height)
         };
     }
 
-    Context Context::create(GLFWwindow* window, bool enableValidation) {
+    Context Context::createWindow(GLFWwindow* window, bool enableValidation) {
         Context ctx;
 
         // Instance creation
@@ -134,6 +137,9 @@ namespace VulkanCube {
         ctx.device = ctx.physicalDevice.createDeviceUnique(deviceInfo).value;
         ctx.graphicsQueue = ctx.device->getQueue(ctx.queueIndices.graphicsFamily.value(), 0);
         ctx.presentQueue = ctx.device->getQueue(ctx.queueIndices.presentFamily.value(), 0);
+        // store some values
+        ctx.deviceFeatures = ctx.physicalDevice.getFeatures();
+        ctx.deviceProperties = ctx.physicalDevice.getProperties();
 
         // Swapchain creation
         SwapChainSupportDetails swapChainSupport = ctx.querySwapChainSupport();
@@ -172,7 +178,7 @@ namespace VulkanCube {
         ctx.swapchain = ctx.device->createSwapchainKHRUnique(swapchainInfo).value;
         ctx.swapchainImages = ctx.device->getSwapchainImagesKHR(*ctx.swapchain).value;
 
-        // Create image views
+        // Create image views for the swapchain images
         ctx.swapchainImageViews.resize(ctx.swapchainImages.size());
         for (size_t i = 0; i < ctx.swapchainImages.size(); i++) {
             vk::ImageViewCreateInfo createInfo(
@@ -203,15 +209,63 @@ namespace VulkanCube {
         );
         ctx.depthImageMemory = ctx.device->allocateMemoryUnique(allocInfo).value;
 
-        // Example:
         vk::Result result = ctx.device->bindImageMemory(*ctx.depthImage, *ctx.depthImageMemory, 0);
-        if (result != vk::Result::eSuccess) { /* Handle error */ } 
+        if (result != vk::Result::eSuccess) {
+            throw std::runtime_error("Failed to bind depth image memory!");
+        }
 
         vk::ImageViewCreateInfo depthViewInfo(
             {}, *ctx.depthImage, vk::ImageViewType::e2D, depthFormat, {},
             { vk::ImageAspectFlagBits::eDepth, 0, 1, 0, 1 }
         );
         ctx.depthImageView = ctx.device->createImageViewUnique(depthViewInfo).value;
+
+        // **** New Code: Create a default Render Pass ****
+        vk::AttachmentDescription colorAttachment(
+            {}, ctx.swapchainFormat, vk::SampleCountFlagBits::e1,
+            vk::AttachmentLoadOp::eClear, vk::AttachmentStoreOp::eStore,
+            vk::AttachmentLoadOp::eDontCare, vk::AttachmentStoreOp::eDontCare,
+            vk::ImageLayout::eUndefined, vk::ImageLayout::ePresentSrcKHR
+        );
+        vk::AttachmentDescription depthAttachment(
+            {}, depthFormat, vk::SampleCountFlagBits::e1,
+            vk::AttachmentLoadOp::eClear, vk::AttachmentStoreOp::eDontCare,
+            vk::AttachmentLoadOp::eDontCare, vk::AttachmentStoreOp::eDontCare,
+            vk::ImageLayout::eUndefined, vk::ImageLayout::eDepthStencilAttachmentOptimal
+        );
+        std::array<vk::AttachmentDescription, 2> attachments = { colorAttachment, depthAttachment };
+        vk::AttachmentReference colorAttachmentRef(0, vk::ImageLayout::eColorAttachmentOptimal);
+        vk::AttachmentReference depthAttachmentRef(1, vk::ImageLayout::eDepthStencilAttachmentOptimal);
+        vk::SubpassDescription subpass({}, vk::PipelineBindPoint::eGraphics, 0, nullptr,
+                                       1, &colorAttachmentRef, nullptr, &depthAttachmentRef);
+vk::RenderPassCreateInfo renderPassInfo(
+    {},
+    static_cast<uint32_t>(attachments.size()),  // attachment count (2)
+    attachments.data(),                         // pointer to attachments
+    1,                                          // subpass count
+    &subpass
+);
+
+        ctx.renderPass = ctx.device->createRenderPassUnique(renderPassInfo).value;
+        // **************************************************
+
+        // **** New Code: Create Framebuffers for each swapchain image view ****
+        ctx.swapchainFramebuffers.resize(ctx.swapchainImageViews.size());
+        for (size_t i = 0; i < ctx.swapchainImageViews.size(); i++) {
+            std::array<vk::ImageView, 2> fbAttachments = {
+                *ctx.swapchainImageViews[i],
+                *ctx.depthImageView
+            };
+            vk::FramebufferCreateInfo framebufferInfo(
+                {}, *ctx.renderPass, static_cast<uint32_t>(fbAttachments.size()),
+                fbAttachments.data(), ctx.swapchainExtent.width, ctx.swapchainExtent.height, 1
+            );
+            ctx.swapchainFramebuffers[i] = ctx.device->createFramebufferUnique(framebufferInfo).value;
+        }
+        // *************************************************************************
+
+        // (Optionally, create synchronization objects here or via createSyncObjects())
+        ctx.createSyncObjects();
 
         return ctx;
     }
@@ -238,6 +292,7 @@ namespace VulkanCube {
         SwapChainSupportDetails swapChainSupport = querySwapChainSupport();
         vk::SurfaceFormatKHR surfaceFormat = chooseSwapSurfaceFormat(swapChainSupport.formats);
         vk::Extent2D newExtent = chooseSwapExtent(swapChainSupport.capabilities, window);
+          vk::UniqueImageView depthImageView; // Ensure this exists
 
         vk::SwapchainCreateInfoKHR createInfo(
             {}, *surface, swapChainSupport.capabilities.minImageCount + 1,
@@ -264,6 +319,20 @@ namespace VulkanCube {
                 { vk::ImageAspectFlagBits::eColor, 0, 1, 0, 1 }
             );
             swapchainImageViews[i] = device->createImageViewUnique(viewInfo).value;
+        }
+
+        // Recreate framebuffers using the existing renderPass and depthImageView
+        swapchainFramebuffers.resize(swapchainImageViews.size());
+        for (size_t i = 0; i < swapchainImageViews.size(); i++) {
+            std::array<vk::ImageView, 2> fbAttachments = {
+                *swapchainImageViews[i],
+                *depthImageView
+            };
+            vk::FramebufferCreateInfo framebufferInfo(
+                {}, *renderPass, static_cast<uint32_t>(fbAttachments.size()),
+                fbAttachments.data(), swapchainExtent.width, swapchainExtent.height, 1
+            );
+            swapchainFramebuffers[i] = device->createFramebufferUnique(framebufferInfo).value;
         }
 
         createSyncObjects();

@@ -1,0 +1,5 @@
+include(CMakeFindDependencyMacro)
+find_dependency(glslang CONFIG)
+find_dependency(SPIRV-Tools CONFIG)
+find_dependency(SPIRV-Tools-opt CONFIG)
+include("${CMAKE_CURRENT_LIST_DIR}/unofficial-shaderc-targets.cmake")

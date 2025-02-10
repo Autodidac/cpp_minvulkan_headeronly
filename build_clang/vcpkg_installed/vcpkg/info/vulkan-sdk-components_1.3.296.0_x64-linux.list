@@ -1,0 +1,7 @@
+x64-linux/
+x64-linux/share/
+x64-linux/share/vulkan-sdk-components/
+x64-linux/share/vulkan-sdk-components/copyright
+x64-linux/share/vulkan-sdk-components/usage
+x64-linux/share/vulkan-sdk-components/vcpkg.spdx.json
+x64-linux/share/vulkan-sdk-components/vcpkg_abi_info.txt

@@ -4,10 +4,13 @@
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
-#include "Windows.h"
+#if defined(_WIN32)
+    #include "Windows.h"
+#endif 
 
+//#define VULKAN_HPP_DISPATCH_LOADER_DYNAMIC 1
 #define VULKAN_HPP_NO_EXCEPTIONS
-#define ENABLE_VALIDATION_LAYERS
+//#define ENABLE_VALIDATION_LAYERS
 #include <vulkan/vulkan.hpp>
 
 #define STB_IMAGE_IMPLEMENTATION
@@ -26,28 +29,105 @@
 #include <stdexcept>         // For exceptions (if necessary)
 #include <string>   // For std::string
 #include <vector>   // For std::vector
-
+/*
 static VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(
     VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
     VkDebugUtilsMessageTypeFlagsEXT messageType,
     const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData,
     void* pUserData) {
-    std::cerr << "Validation layer: " << pCallbackData->pMessage << std::endl;
+    
+    std::cerr << "[Vulkan Validation Layer] ";
+
+    if (messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT) {
+        std::cerr << "[ERROR] ";
+    } else if (messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT) {
+        std::cerr << "[WARNING] ";
+    } else if (messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT) {
+        std::cerr << "[INFO] ";
+    } else if (messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT) {
+        std::cerr << "[VERBOSE] ";
+    }
+
+    std::cerr << "Message: " << pCallbackData->pMessage << std::endl;
+
     return VK_FALSE;
 }
 
+void DestroyDebugUtilsMessengerEXT(VkInstance instance, VkDebugUtilsMessengerEXT debugMessenger, const VkAllocationCallbacks* pAllocator) {
+    auto func = (PFN_vkDestroyDebugUtilsMessengerEXT) vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessengerEXT");
+    if (func != nullptr) {
+        func(instance, debugMessenger, pAllocator);
+    }
+}
+*/
+
+const int MAX_FRAMES_IN_FLIGHT = 2;
+
+const std::vector<const char*> validationLayers = {
+    "VK_LAYER_KHRONOS_validation"
+};
+
+const std::vector<const char*> deviceExtensions = {
+    VK_KHR_SWAPCHAIN_EXTENSION_NAME
+};
+
+#ifdef NDEBUG
+const bool enableValidationLayers = false;
+#else
+const bool enableValidationLayers = true;
+#endif
+
+/*
+    static VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData, void* pUserData) {
+        std::cerr << "validation layer: " << pCallbackData->pMessage << std::endl;
+
+        return VK_FALSE;
+    }
+
+
+
+VkResult CreateDebugUtilsMessengerEXT(VkInstance instance,
+    const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo,
+    const VkAllocationCallbacks* pAllocator,
+    VkDebugUtilsMessengerEXT* pDebugMessenger)
+{
+    auto func = (PFN_vkCreateDebugUtilsMessengerEXT)
+        vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT");
+    if (func != nullptr) {
+        return func(instance, pCreateInfo, pAllocator, pDebugMessenger);
+    } else {
+        return VK_ERROR_EXTENSION_NOT_PRESENT;
+    }
+}
+
+
+void DestroyDebugUtilsMessengerEXT(VkInstance instance, VkDebugUtilsMessengerEXT debugMessenger, const VkAllocationCallbacks* pAllocator) {
+    auto func = (PFN_vkDestroyDebugUtilsMessengerEXT) vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessengerEXT");
+    if (func != nullptr) {
+        func(instance, debugMessenger, pAllocator);
+    }
+}
+
+struct DebugMessengerDeleter {
+    VkInstance instance;
+    void operator()(VkDebugUtilsMessengerEXT messenger, const VkAllocationCallbacks* pAllocator) const {
+        DestroyDebugUtilsMessengerEXT(instance, messenger, pAllocator);
+    }
+};
+*/
 //#define VK_CHECK(result) if(result != vk::Result::eSuccess) { \
     throw std::runtime_error("Vulkan error at line " + std::to_string(__LINE__)); }
 
 #define VK_CHECK(x)                                                                    \
-	do                                                                                 \
-	{                                                                                  \
-		VkResult err = x;                                                              \
-		if (err)                                                                       \
-		{                                                                              \
-			throw std::runtime_error("Detected Vulkan error: " + std::to_string(err)); \
-		}                                                                              \
-	} while (0)
+    do                                                                                \
+    {                                                                                 \
+        VkResult err = x;                                                             \
+        if (err != VK_SUCCESS)                                                        \
+        {                                                                             \
+            throw std::runtime_error("Vulkan error (" + std::to_string(err) +         \
+                                     ") at " + __FILE__ + ":" + std::to_string(__LINE__)); \
+        }                                                                             \
+    } while (0)
 
 
 namespace VulkanCube {
@@ -119,7 +199,7 @@ namespace VulkanCube {
         vk::UniqueSurfaceKHR surface;
 
         // Vulkan debugging tools
-        vk::UniqueDebugUtilsMessengerEXT debugMessenger;
+       // vk::UniqueDebugUtilsMessengerEXT debugMessenger;
 
         // Vulkan device and queues
         vk::PhysicalDevice physicalDevice;
@@ -213,9 +293,9 @@ namespace VulkanCube {
             createInstance();
             createSurface(); // Ensure the surface is created before using it
 
-#ifdef _DEBUG
-            setupDebugMessenger();
-#endif
+    if (enableValidationLayers) {
+        //setupDebugMessenger();
+    }
             physicalDevice = pickPhysicalDevice(); // Select a suitable physical device
             if (!physicalDevice) {
                 std::cerr << "Failed to pick a physical device!" << std::endl;
@@ -349,10 +429,10 @@ namespace VulkanCube {
             }
 
             std::vector<const char*> extensions(glfwExtensions, glfwExtensions + glfwExtensionCount);
-            extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+            //extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
             return extensions;
         }
-
+/*
         void setupDebugMessenger() {
             vk::DebugUtilsMessengerCreateInfoEXT createInfo;
             createInfo.setMessageSeverity(vk::DebugUtilsMessageSeverityFlagBitsEXT::eVerbose |
@@ -371,6 +451,31 @@ namespace VulkanCube {
             debugMessenger = std::move(result.value);
 
         }
+*/
+/*
+        void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo) {
+            createInfo = {};
+            createInfo.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
+            createInfo.messageSeverity = VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;
+            createInfo.messageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
+            createInfo.pfnUserCallback = debugCallback;
+        }
+
+        void setupDebugMessenger() {
+            if (!enableValidationLayers) return;
+
+            VkDebugUtilsMessengerCreateInfoEXT createInfo{};
+            populateDebugMessengerCreateInfo(createInfo);
+
+            VkDebugUtilsMessengerEXT messenger;
+            if (CreateDebugUtilsMessengerEXT(*instance, &createInfo, nullptr, &messenger) != VK_SUCCESS) {
+                throw std::runtime_error("failed to set up debug messenger!");
+            }
+
+            vk::DispatchLoaderDynamic dld(*instance, vkGetInstanceProcAddr);
+            debugMessenger = vk::UniqueDebugUtilsMessengerEXT(messenger, *instance, dld);
+
+        }*/
 
         vk::PhysicalDevice pickPhysicalDevice() {
             // Enumerate physical devices
@@ -837,7 +942,7 @@ namespace VulkanCube {
 
             // Allocate command buffers
             auto result = device->allocateCommandBuffersUnique(allocInfo);
-            if (result.result != vk::Result::eSuccess) {
+            if (result.value.empty()) {
                 throw std::runtime_error("Failed to allocate command buffers!");
             }
 
@@ -848,8 +953,8 @@ namespace VulkanCube {
 
             // Define the clear values
             std::vector<vk::ClearValue> clearValues;
-            clearValues.push_back(vk::ClearValue().setColor(vk::ClearColorValue(std::array<float, 4>{0.0f, 0.0f, 0.0f, 1.0f})));
-            clearValues.push_back(vk::ClearValue().setDepthStencil({ 1.0f, 0 }));
+            clearValues.emplace_back(vk::ClearColorValue(std::array<float, 4>{0.0f, 0.0f, 0.0f, 1.0f}));
+            clearValues.emplace_back(vk::ClearDepthStencilValue(1.0f, 0));
 
             // Loop through and record command buffers
             for (size_t i = 0; i < commandBuffers.size(); i++) {
@@ -885,35 +990,42 @@ namespace VulkanCube {
         void createTextureImage() {
             int texWidth, texHeight, texChannels;
             stbi_uc* pixels = stbi_load("texture.jpg", &texWidth, &texHeight, &texChannels, STBI_rgb_alpha);
-            if (!pixels) throw std::runtime_error("Failed to load texture image!");
+            if (!pixels) {
+                throw std::runtime_error(std::string("Failed to load texture image: ") + stbi_failure_reason());
+            }
 
             vk::DeviceSize imageSize = texWidth * texHeight * 4;
+
             vk::UniqueBuffer stagingBuffer;
             vk::UniqueDeviceMemory stagingBufferMemory;
-            createBuffer(imageSize, vk::BufferUsageFlagBits::eTransferSrc,
-                vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,
-                stagingBuffer, stagingBufferMemory);
+            void createBuffer(vk::DeviceSize size, vk::BufferUsageFlags usage,
+    vk::MemoryPropertyFlags properties, vk::UniqueBuffer& buffer,
+    vk::UniqueDeviceMemory& bufferMemory);
 
-            // Map the staging buffer memory
-            vk::ResultValue<void*> result = device->mapMemory(*stagingBufferMemory, 0, imageSize);
-            if (result.result != vk::Result::eSuccess) {
+            auto result = device->mapMemory(*stagingBufferMemory, 0, imageSize);
+            if (result.result != vk::Result::eSuccess || result.value == nullptr) {
                 throw std::runtime_error("Failed to map memory!");
             }
-            void* data = result.value;
 
-            memcpy(data, pixels, static_cast<size_t>(imageSize));
+            memcpy(result.value, pixels, static_cast<size_t>(imageSize));
             device->unmapMemory(*stagingBufferMemory);
             stbi_image_free(pixels);
 
             createImage(texWidth, texHeight, vk::Format::eR8G8B8A8Srgb,
-                vk::ImageTiling::eOptimal, vk::ImageUsageFlagBits::eTransferDst | vk::ImageUsageFlagBits::eSampled,
-                vk::MemoryPropertyFlagBits::eDeviceLocal, textureImage, textureImageMemory);
+                        vk::ImageTiling::eOptimal,
+                        vk::ImageUsageFlagBits::eTransferDst | vk::ImageUsageFlagBits::eSampled,
+                        vk::MemoryPropertyFlagBits::eDeviceLocal, textureImage, textureImageMemory);
 
             transitionImageLayout(*textureImage, vk::Format::eR8G8B8A8Srgb,
-                vk::ImageLayout::eUndefined, vk::ImageLayout::eTransferDstOptimal);
-            copyBufferToImage(stagingBuffer, *textureImage, texWidth, texHeight);
+                                vk::ImageLayout::eUndefined, vk::ImageLayout::eTransferDstOptimal);
+
+            // ✅ Pass `*stagingBuffer` to match `const vk::Buffer&`
+            copyBufferToImage(*stagingBuffer, *textureImage, texWidth, texHeight);
+
             transitionImageLayout(*textureImage, vk::Format::eR8G8B8A8Srgb,
-                vk::ImageLayout::eTransferDstOptimal, vk::ImageLayout::eShaderReadOnlyOptimal);
+                                vk::ImageLayout::eTransferDstOptimal, vk::ImageLayout::eShaderReadOnlyOptimal);
+
+            stagingBufferMemory.reset();
         }
 
         // --- Texture Image View ---
@@ -940,41 +1052,47 @@ namespace VulkanCube {
             vk::MemoryPropertyFlags properties,
             vk::UniqueImage& image, vk::UniqueDeviceMemory& imageMemory) {
 
-            vk::ImageCreateInfo imageInfo(
-                {},
-                vk::ImageType::e2D,
-                format,
-                vk::Extent3D(width, height, 1),
-                1,
-                1,
-                vk::SampleCountFlagBits::e1,
-                tiling,
-                usage,
-                vk::SharingMode::eExclusive
-            );
+            // Image creation
+            vk::ImageCreateInfo imageInfo{};
+            imageInfo.imageType = vk::ImageType::e2D;
+            imageInfo.format = format;
+            imageInfo.extent = vk::Extent3D(width, height, 1);
+            imageInfo.mipLevels = 1;
+            imageInfo.arrayLayers = 1;
+            imageInfo.samples = vk::SampleCountFlagBits::e1;
+            imageInfo.tiling = tiling;
+            imageInfo.usage = usage;
+            imageInfo.sharingMode = vk::SharingMode::eExclusive;
+            imageInfo.flags = {}; // Ensure it's explicitly cleared.
 
-            // Create the image
             auto result = device->createImageUnique(imageInfo);
             if (result.result != vk::Result::eSuccess) {
-                throw std::runtime_error("Failed to create image!");
+                throw std::runtime_error("Failed to create image! Error: " + std::to_string((int)result.result));
             }
-            image = std::move(result.value);  // Move the created image into image
+            image = std::move(result.value);
 
-            // Get memory requirements for the image
+            // Memory requirements
             vk::MemoryRequirements memRequirements = device->getImageMemoryRequirements(*image);
+            uint32_t memoryTypeIndex = findMemoryType(memRequirements.memoryTypeBits, properties);
+            if (memoryTypeIndex == UINT32_MAX) {
+                throw std::runtime_error("Failed to find suitable memory type!");
+            }
 
-            // Allocate memory for the image
-            vk::MemoryAllocateInfo allocInfo(memRequirements.size,
-                findMemoryType(memRequirements.memoryTypeBits, properties));
+            vk::MemoryAllocateInfo allocInfo{};
+            allocInfo.allocationSize = memRequirements.size;
+            allocInfo.memoryTypeIndex = memoryTypeIndex;
 
             auto allocResult = device->allocateMemoryUnique(allocInfo);
             if (allocResult.result != vk::Result::eSuccess) {
-                throw std::runtime_error("Failed to allocate image memory!");
+                throw std::runtime_error("Failed to allocate image memory! Error: " + std::to_string((int)allocResult.result));
             }
-            imageMemory = std::move(allocResult.value);  // Move the allocated memory into imageMemory
+            imageMemory = std::move(allocResult.value);
 
-            // Bind the image memory
-            device->bindImageMemory(*image, *imageMemory, 0);
+            // Bind memory
+            vk::Result bindResult = device->bindImageMemory(*image, *imageMemory, 0);
+            if (bindResult != vk::Result::eSuccess) {
+                throw std::runtime_error("Failed to bind image memory! Error: " + std::to_string((int)bindResult));
+            }
         }
 
         void createVertexBuffer() {
@@ -1078,19 +1196,19 @@ namespace VulkanCube {
             throw std::runtime_error("Failed to find suitable memory type!");
         }
 
-        void createBuffer(vk::DeviceSize size, vk::BufferUsageFlags usage,
-            vk::MemoryPropertyFlags properties, vk::UniqueBuffer& buffer,
-            vk::UniqueDeviceMemory& bufferMemory) {
+        std::pair<vk::UniqueBuffer, vk::UniqueDeviceMemory> createBuffer(
+            vk::DeviceSize size, vk::BufferUsageFlags usage, vk::MemoryPropertyFlags properties) {
+            
             vk::BufferCreateInfo bufferInfo({}, size, usage);
 
-            // Create the buffer
+            // Create buffer
             auto result = device->createBufferUnique(bufferInfo);
             if (result.result != vk::Result::eSuccess) {
                 throw std::runtime_error("Failed to create buffer!");
             }
-            buffer = std::move(result.value);  // Move the created buffer into buffer
+            vk::UniqueBuffer buffer = std::move(result.value);
 
-            // Allocate memory for the buffer
+            // Allocate memory
             vk::MemoryRequirements memRequirements = device->getBufferMemoryRequirements(*buffer);
             vk::MemoryAllocateInfo allocInfo(memRequirements.size,
                 findMemoryType(memRequirements.memoryTypeBits, properties));
@@ -1099,10 +1217,12 @@ namespace VulkanCube {
             if (allocResult.result != vk::Result::eSuccess) {
                 throw std::runtime_error("Failed to allocate buffer memory!");
             }
-            bufferMemory = std::move(allocResult.value);  // Move the allocated memory into bufferMemory
+            vk::UniqueDeviceMemory bufferMemory = std::move(allocResult.value);
 
-            // Bind the memory to the buffer
+            // Bind buffer to memory
             device->bindBufferMemory(*buffer, *bufferMemory, 0);
+
+            return { std::move(buffer), std::move(bufferMemory) };
         }
 
         void copyBuffer(vk::Buffer srcBuffer, vk::Buffer dstBuffer, vk::DeviceSize size) {
@@ -1492,7 +1612,7 @@ namespace VulkanCube {
         }
 
         // Buffer/image copying
-        void copyBufferToImage(vk::UniqueBuffer& buffer, vk::Image image, uint32_t width, uint32_t height) {
+        void copyBufferToImage(vk::Buffer& buffer, vk::Image image, uint32_t width, uint32_t height) {
             vk::UniqueCommandBuffer commandBuffer = beginSingleTimeCommands();
 
             vk::BufferImageCopy region(
@@ -1500,7 +1620,7 @@ namespace VulkanCube {
                 vk::ImageSubresourceLayers(vk::ImageAspectFlagBits::eColor, 0, 0, 1),
                 { 0, 0, 0 }, { width, height, 1 });
 
-            commandBuffer->copyBufferToImage(buffer.get(), image, vk::ImageLayout::eTransferDstOptimal, 1, &region);
+            commandBuffer->copyBufferToImage(buffer, image, vk::ImageLayout::eTransferDstOptimal, 1, &region);
             endSingleTimeCommands(commandBuffer);
         }
 
@@ -1645,7 +1765,7 @@ namespace VulkanCube {
             }
 
             device.reset();
-            debugMessenger.reset();
+            //debugMessenger.reset();
             surface.reset();
             instance.reset();
 

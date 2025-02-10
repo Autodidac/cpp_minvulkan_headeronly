@@ -40,6 +40,11 @@ namespace VulkanCube {
         vk::Format swapchainFormat;
         std::vector<vk::Image> swapchainImages;
         std::vector<vk::UniqueImageView> swapchainImageViews;
+        vk::UniqueImageView depthImageView;
+
+        // Depth resources
+        vk::UniqueImage depthImage;
+        vk::UniqueDeviceMemory depthImageMemory;
 
         // Sync objects
         std::vector<vk::UniqueSemaphore> imageAvailableSemaphores;
@@ -55,11 +60,15 @@ namespace VulkanCube {
         // Framebuffers
         std::vector<vk::UniqueFramebuffer> swapchainFramebuffers;
 
+        // New members for features and properties:
+        vk::PhysicalDeviceFeatures deviceFeatures;
+        vk::PhysicalDeviceProperties deviceProperties;
+
         // Constants
         static constexpr int MAX_FRAMES_IN_FLIGHT = 2;
         static const std::vector<const char*> deviceExtensions;
 
-        static Context create(GLFWwindow* window, bool enableValidation = false);
+        static Context createWindow(GLFWwindow* window, bool enableValidation = false);
         void recreateSwapchain(GLFWwindow* window);
         void createSyncObjects();
         SwapChainSupportDetails querySwapChainSupport() const;

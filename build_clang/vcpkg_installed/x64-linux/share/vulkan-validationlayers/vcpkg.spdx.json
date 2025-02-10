@@ -1,0 +1,132 @@
+{
+  "$schema": "https://raw.githubusercontent.com/spdx/spdx-spec/v2.2.1/schemas/spdx-schema.json",
+  "spdxVersion": "SPDX-2.2",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "documentNamespace": "https://spdx.org/spdxdocs/vulkan-validationlayers-x64-linux-1.3.296.0-eed15b78-8187-4fcd-8d87-ec9627f322ca",
+  "name": "vulkan-validationlayers:x64-linux@1.3.296.0 c4afd0034153a91e1b0ff254d6b20a2ba9ac5fed2dfa191c15928839af90040f",
+  "creationInfo": {
+    "creators": [
+      "Tool: vcpkg-2025-01-29-a75ad067f470c19f030361064e32a2585392bee2"
+    ],
+    "created": "2025-02-06T16:44:43Z"
+  },
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "GENERATES",
+      "relatedSpdxElement": "SPDXRef-binary"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-0"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-1"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-2"
+    },
+    {
+      "spdxElementId": "SPDXRef-binary",
+      "relationshipType": "GENERATED_FROM",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-0",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-1",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-2",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    }
+  ],
+  "packages": [
+    {
+      "name": "vulkan-validationlayers",
+      "SPDXID": "SPDXRef-port",
+      "versionInfo": "1.3.296.0",
+      "downloadLocation": "git+https://github.com/Microsoft/vcpkg@93913bad76f726fbd8cd239ce8227db3245b2de7",
+      "homepage": "https://github.com/KhronosGroup/Vulkan-ValidationLayers",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "description": "Vulkan Validation Layers (VVL)",
+      "comment": "This is the port (recipe) consumed by vcpkg."
+    },
+    {
+      "name": "vulkan-validationlayers:x64-linux",
+      "SPDXID": "SPDXRef-binary",
+      "versionInfo": "c4afd0034153a91e1b0ff254d6b20a2ba9ac5fed2dfa191c15928839af90040f",
+      "downloadLocation": "NONE",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "This is a binary package built by vcpkg."
+    },
+    {
+      "SPDXID": "SPDXRef-resource-0",
+      "name": "KhronosGroup/Vulkan-ValidationLayers",
+      "downloadLocation": "git+https://github.com/KhronosGroup/Vulkan-ValidationLayers@vulkan-sdk-1.3.296.0",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "457edee35a347456391c9b36bdf5d457f05210b6a8889d0623498582d3385bed474fbd7dae66406d20f70d96238ca752414eaa844b86b431ec7f8cf721d46d08"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/vulkan-validationlayers/93913bad76f726fbd8cd239ce8227db3245b2de7/portfile.cmake",
+      "SPDXID": "SPDXRef-file-0",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c2ffbf170cf11285258a8ccc5021e7e815e85985f38fa0be1474c0a6955f156c"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/vulkan-validationlayers/93913bad76f726fbd8cd239ce8227db3245b2de7/usage",
+      "SPDXID": "SPDXRef-file-1",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1f1450505bf2bc98cb0b609629d016a905cc7c6920ff9bb104d2a9cb46beb6f3"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": ".//home/dude/Documents/repos/vcpkg/buildtrees/versioning_/versions/vulkan-validationlayers/93913bad76f726fbd8cd239ce8227db3245b2de7/vcpkg.json",
+      "SPDXID": "SPDXRef-file-2",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b8d5557d11af0bed8e9e3a71da9cb80c2d4cf7b1c3ad4051a09592b0d5f280f7"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    }
+  ]
+}
